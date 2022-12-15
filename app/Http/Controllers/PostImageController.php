@@ -19,4 +19,5 @@ class PostImageController extends Controller
         ]);
         return new PostImageResource($image);
     }
+
 }
