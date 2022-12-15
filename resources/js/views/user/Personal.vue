@@ -1,5 +1,6 @@
 <template>
     <div class="w-96 mx-auto">
+        <div class="mb-3">
         <div>
             <input v-model="title" class="w-96 mb-3 rounded-3xl border p-2 border-slate-400 " type="text"
                    placeholder="title">
@@ -25,6 +26,17 @@
             <a @click.prevent="store" href="#" class="block p-2 w-32 text-center rounded-3xl bg-green-600 text-white
             hover:bg-white hover:border hover:border-green-600 hover:text-green-600 ml-auto">Publish</a>
         </div>
+
+        <div v-if="posts">
+            <h1 class="mb-8 pb-8 border-b border-gray-400">Posts</h1>
+            <div v-for="post in posts" class="mb-8 pb-8 border-b border-gray-400">
+            <h1 class="text-xl">{{ post.title }}</h1>
+            <img class="my-3 mx-auto" v-if="post.image_url" :src="post.image_url" :alt="post.title">
+            <p>{{post.content}}</p>
+            <p class="text-right text-slate-500 text-sm mt-2">{{post.date}}</p>
+            </div>
+        </div>
+        </div>
     </div>
 </template>
 
@@ -38,11 +50,23 @@
             return {
                 title: '',
                 content: '',
-                image: ''
+                image: null,
+                posts: []
             }
        },
 
+        mounted() {
+            this.getPosts()
+        },
+
         methods: {
+            getPosts(){
+              axios.get('/api/posts')
+                .then( res =>{
+                    this.posts = res.data.data
+                })
+            },
+
             store(){
                 const id = this.image ? this.image.id : null
                 axios.post('/api/posts', {title: this.title, content: this.content, image_id: id})
@@ -50,7 +74,7 @@
                     this.title = ''
                     this.content = ''
                     this.image = null
-                    console.log(res)
+                    this.posts.unshift(res.data.data)
                 })
             },
             selectFile() {

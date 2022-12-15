@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Post;
+namespace App\Http\Resources\User;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,12 +14,9 @@ class PostResource extends JsonResource
      */
     public function toArray($request)
     {
-        $url = isset($this->image) ? $this->image->url : null;
         return [
-            'title' => $this->title,
-            'content' => $this->content,
-            'image_url' => $url,
-            'date' =>$this->created_at->diffForHumans()
+            'name' => $this->name,
+            'email' => $this->email,
         ];
     }
 }

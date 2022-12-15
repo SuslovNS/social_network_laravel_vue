@@ -16,4 +16,5 @@ class Post extends Model
         return $this->hasOne(PostImage::class, 'post_id', 'id')
             ->whereNotNull('post_id');
     }
+
 }
