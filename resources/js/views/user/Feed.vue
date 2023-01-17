@@ -2,7 +2,7 @@
     <div class="w-96 mx-auto">
 
         <div v-if="posts">
-            <h1 class="mb-8 pb-8 border-b border-gray-400">{{userName}}`s posts</h1>
+            <h1 class="mb-8 pb-8 border-b border-gray-400">Feed</h1>
             <Post v-for="post in posts" :post="post"></Post>
         </div>
     </div>
@@ -13,13 +13,11 @@
 import Post from "@/components/Post.vue";
 
 export default {
-    name: "Show",
+    name: "Feed",
 
     data() {
         return {
             posts: [],
-            userId: this.$route.params.id,
-            userName: ''
         }
     },
 
@@ -29,23 +27,16 @@ export default {
 
     mounted() {
         this.getPosts()
-        this.getUser()
     },
 
     methods: {
         getPosts() {
-            axios.get(`/api/users/${this.userId}/posts`)
+            axios.get(`/api/users/following_posts`)
                 .then(res => {
                     this.posts = res.data.data
                 })
         },
 
-        getUser(){
-            axios.get(`/api/users/${this.userId}`)
-            .then(res => {
-                this.userName = res.data
-            })
-        }
 
     }
 
