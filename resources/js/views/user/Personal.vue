@@ -1,13 +1,19 @@
 <template>
     <div class="w-96 mx-auto">
-        <div class="mb-3">
-            <div>
-                <input v-model="title" class="w-96 mb-3 rounded-3xl border p-2 border-slate-400 " type="text"
+        <div class="mb-4">
+            <div class="mb-3">
+                <input v-model="title" class="w-96  rounded-3xl border p-2 border-slate-400 " type="text"
                        placeholder="title">
             </div>
-            <div>
-            <textarea v-model="content" class="w-96 mb-3 rounded-3xl border p-2 border-slate-400 "
+            <div v-if="errors.title">
+                <p v-for="error in errors.title" class="text-sm mt-2 text-red-500">{{error}}</p>
+            </div>
+            <div class="mb-3">
+            <textarea v-model="content" class="w-96  rounded-3xl border p-2 border-slate-400 "
                       placeholder="content"></textarea>
+            </div>
+            <div v-if="errors.content">
+                <p v-for="error in errors.content" class="text-sm mt-2 text-red-500">{{error}}</p>
             </div>
             <div class="flex mb-3 items-center">
                 <div>
@@ -46,7 +52,8 @@ export default {
             title: '',
             content: '',
             image: null,
-            posts: []
+            posts: [],
+            errors: []
         }
     },
 
@@ -75,6 +82,9 @@ export default {
                     this.image = null
                     this.posts.unshift(res.data.data)
                 })
+            .catch( e => {
+               this.errors = e.response.data.errors
+            })
         },
         selectFile() {
             this.fileInput = this.$refs.file;

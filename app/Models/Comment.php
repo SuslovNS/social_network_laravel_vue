@@ -2,10 +2,18 @@
 
 namespace App\Models;
 
+use App\Http\Resources\User\UserResource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
     protected $guarded = false;
+
+    protected $with = ['user'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

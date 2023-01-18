@@ -5,6 +5,9 @@
             <h1 class="mb-8 pb-8 border-b border-gray-400">{{userName}}`s posts</h1>
             <Post v-for="post in posts" :post="post"></Post>
         </div>
+        <div v-else>
+        <h2>There is no posts</h2>
+        </div>
     </div>
 </template>
 

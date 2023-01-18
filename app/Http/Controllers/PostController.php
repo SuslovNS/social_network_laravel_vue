@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Post\CommentRequest;
+use App\Http\Requests\Post\RepostRequest;
 use App\Http\Requests\Post\StoreRequest;
+use App\Http\Resources\Comment\CommentResource;
 use App\Http\Resources\Post\PostResource;
+use App\Models\Comment;
 use App\Models\LikedPosts;
 use App\Models\Post;
 use App\Models\PostImage;
@@ -14,7 +18,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts= Post::where('user_id', auth()->id())->latest()->get();
+        $posts= Post::where('user_id', auth()->id())->withCount('repostedByPost')->latest()->get();
         $likedPostIds = LikedPosts::where('user_id', auth()->id())
             ->get('post_id')->pluck('post_id')->toArray();
         foreach ($posts as $post) {
@@ -49,6 +53,30 @@ class PostController extends Controller
             return response()->json(['error'=>$exception->getMessage()]);
         }
         return new PostResource($post);
+    }
+
+    public function repost(RepostRequest $request, Post $post)
+    {
+        $data = $request->validated();
+        $data['user_id'] = auth()->id();
+        $data['reposted_id'] = $post->id;
+        Post::create($data);
+    }
+
+    public function comment(Post $post, CommentRequest $request)
+    {
+        $data = $request->validated();
+        $data['post_id'] = $post->id;
+        $data['user_id'] = auth()->id();
+        $comment = Comment::create($data);
+
+        return new CommentResource($comment);
+    }
+
+    public function commentList(Post $post)
+    {
+        $comments = $post->comments()->get();
+        return CommentResource::collection($comments);
     }
 
     private function processImage($post, $imageId)

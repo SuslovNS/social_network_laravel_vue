@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $guarded = false;
-
-    protected $with = ['image', 'likedUsers'];
+    protected $withCount = ['comments'];
+    protected $with = ['image', 'likedUsers', 'repostedPost'];
 
     public function image()
     {
@@ -27,5 +27,19 @@ class Post extends Model
         return $this->belongsToMany(User::class, 'liked_posts', 'post_id', 'user_id');
     }
 
+    public function repostedPost()
+    {
+        return $this->belongsTo(Post::class, 'reposted_id', 'id');
+    }
+
+    public function repostedByPost()
+    {
+        return $this->hasMany(Post::class, 'reposted_id', 'id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'post_id', 'id');
+    }
 
 }
