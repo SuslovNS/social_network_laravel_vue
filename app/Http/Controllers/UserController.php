@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\StatRequest;
 use App\Http\Resources\Post\PostResource;
 use App\Http\Resources\User\UserResource;
 use App\Models\LikedPosts;
@@ -31,6 +32,20 @@ class UserController extends Controller
         $posts = $user->posts()->latest()->withCount('repostedByPost')->get();
         $posts = $this->prepareLikedPosts($posts);
         return PostResource::collection($posts);
+    }
+
+    public function stat(StatRequest $request)
+    {
+        $data = $request->validated();
+        $userId = isset($data['user_id']) ? $data['user_id'] : auth()->id();
+        $result = [];
+        $result['subscribers_count'] = SubscriberFollowing::where('following_id', $userId)->count();
+        $result['followings_count'] = SubscriberFollowing::where('subscriber_id', $userId)->count();
+        $postIds = Post::where('user_id', $userId)->get('id')->pluck('id')->toArray();
+        $result['likes_count'] = LikedPosts::where('post_id', $postIds)->count();
+        $result['posts_count'] = count($postIds);
+
+        return response()->json(['data' => $result]);
     }
 
     public function oneUserName($id)

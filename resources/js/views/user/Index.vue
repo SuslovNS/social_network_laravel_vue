@@ -39,7 +39,7 @@
             },
 
             toggleFollowing(user){
-                axios.get(`/api/users/${user.id}/toggle_following`)
+                axios.post(`/api/users/${user.id}/toggle_following`)
                     .then(res => {
                         user.is_followed = res.data.is_followed
                     })

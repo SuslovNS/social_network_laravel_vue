@@ -10,10 +10,15 @@ class Comment extends Model
 {
     protected $guarded = false;
 
-    protected $with = ['user'];
+    protected $with = ['user', 'parent'];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Comment::class, 'parent_id', 'id');
     }
 }

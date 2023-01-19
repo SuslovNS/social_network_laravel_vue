@@ -20,7 +20,7 @@ class RepostedPostResource extends JsonResource
             'title' => $this->title,
             'content' => $this->content,
             'image_url' => $url,
-            'userName' => $this->user->name ?? null,
+            'user' => $this->user ?? null,
             'date' =>$this->created_at->diffForHumans(),
 //            'is_liked' => $this->is_liked ?? false,
 //            'likes_count' => $this->likedUsers->count(),

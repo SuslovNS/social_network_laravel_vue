@@ -5,7 +5,7 @@
         <p>{{ post.content }}</p>
 
         <div v-if="post.reposted_post" class="bg-gray-100 p-4 my-4 border border-gray-200">
-            <h2 class="text">Reposted from {{post.reposted_post.userName}}</h2>
+            <h2 class="text">Reposted from <router-link :to="{name: 'user.show', params:{id:post.reposted_post.user.id}}">{{post.reposted_post.user.name}}</router-link></h2>
             <h1 class="text-xl">{{ post.reposted_post.title }}</h1>
             <img class="my-3 mx-auto" v-if="post.reposted_post.image_url" :src="post.reposted_post.image_url"
                  :alt="post.reposted_post.title">
@@ -14,10 +14,22 @@
         </div>
 
         <div class="flex justify-between items-center mt-2">
-            <p class="text-slate-500 text-sm">{{ post.userName }}</p>
+            <router-link class="text-slate-500 text-sm" :to="{name: 'user.show', params:{id: post.user.id}}">{{ post.user.name }}</router-link>
+<!--            <p class="text-slate-500 text-sm">{{ post.userName }}</p>-->
             <p class="text-slate-500 text-sm">{{ post.date }}</p>
 
             <div class="flex">
+                <div class="flex mr-2">
+                    <svg  @click="getComments(post)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          :class="['mr-2 stroke-sky-500 cursor-pointer hover:fill-sky-500 w-6 h-6 fill-white' ]">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/>
+                    </svg>
+                    <p>{{post.comments_count}}</p>
+                </div>
+
                 <div class="flex mr-2">
                     <svg @click.prevent="openRepost(post)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                          stroke-width="1.5" stroke="currentColor"
@@ -58,36 +70,42 @@
             </div>
             <div>
                 <a @click.prevent="repost(post)" href="#" class="block p-2 w-32 text-center rounded-3xl bg-green-600 text-white
-            hover:bg-white hover:border hover:border-green-600 hover:text-green-600 ml-auto">Publish</a>
+            hover:bg-white hover:border hover:border-green-600 hover:text-green-600 ml-auto">Repost</a>
             </div>
         </div>
         <div v-if="post.comments_count > 0" class="mt-4">
-            <p v-if="!isShowed" @click="getComments(post)">Show {{post.comments_count}} comments</p>
-            <p v-if="isShowed" @click="isShowed = false">Close</p>
+<!--            <p v-if="!isShowed" @click="getComments(post)" class="text-center cursor-pointer">Show {{post.comments_count}} comments</p>-->
+            <p v-if="isShowed" @click="isShowed = false" class="text-center cursor-pointer">Close comments</p>
             <div v-if="comments && isShowed">
                 <div v-for="comment in comments" class="mt-4 pt-4 border-t border-gray-300">
-                    <p class="text-sm">{{comment.user.name}}</p>
-                    <p>{{comment.body}}</p>
+                    <div class="flex mb-2">
+                    <p class="text-sm mr-2">{{comment.user.name}}</p>
+                        <p @click="setParentId(comment)" class="cursor-pointer text-sm text-sky-500">Answer</p>
+                </div>
+                    <p><span v-if="comment.answered_for_user" class="text-sky-400">{{comment.answered_for_user ? comment.answered_for_user : ''}}, </span> {{comment.body}}</p>
                     <p class="text-right text-sm">{{comment.date}}</p>
                 </div>
             </div>
         </div>
         <div class="mt-4">
             <div class="mb-3">
-                <div>
+                <div class="flex items-center">
+                <p v-if="comment" class="mr-2">Answer for {{comment.user.name}}</p>
+                <p v-if="comment" @click="comment = null" class="cursor-pointer text-sm text-sky-300">Cancel</p>
+                </div>
                     <input v-model="body" class="w-96 mb-3 rounded-3xl border p-2 border-slate-400 " type="text"
                            placeholder="comment">
-                </div>
+            </div>
                 <div>
                     <a @click.prevent="storeComment(post)" href="#" class="block p-2 w-32 text-center rounded-3xl bg-green-600 text-white
             hover:bg-white hover:border hover:border-green-600 hover:text-green-600 ml-auto">Comment</a>
                 </div>
-            </div>
         </div>
     </div>
 </template>
 
 <script>
+
     export default {
         name: "Post",
 
@@ -104,24 +122,31 @@
                 repostedId: null,
                 errors: [],
                 comments: [],
-                isShowed: false
+                isShowed: false,
+                comment: null
             }
         },
 
         methods: {
             toggleLike(post) {
-                axios.get(`/api/posts/${post.id}/toggle_like`)
+                axios.post(`/api/posts/${post.id}/toggle_like`)
                     .then(res => {
                         post.is_liked = res.data.is_liked
                         post.likes_count = res.data.likes_count
                     })
             },
 
+            setParentId(comment){
+                this.comment = comment
+            },
+
             storeComment(post) {
-                axios.post(`/api/posts/${post.id}/comment`, {body: this.body})
+                const commentId = this.comment ? this.comment.id : null
+                axios.post(`/api/posts/${post.id}/comment`, {body: this.body, parent_id: commentId})
                     .then(res => {
                         this.body = ''
                         this.comments.unshift(res.data.data)
+                        this.comment = null
                         post.comments_count++
                         this.isShowed = true
                     })

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Post;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CommentRequest extends FormRequest
+class StatRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'body' => 'required|string',
-            'parent_id' => 'nullable|integer|exists:comments,id',
+            'user_id' => 'nullable|integer|exists:users,id'
         ];
     }
 }
