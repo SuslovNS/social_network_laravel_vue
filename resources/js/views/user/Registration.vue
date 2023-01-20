@@ -19,7 +19,7 @@
                        class="w-96 p-1 mb-2 border border-inherit rounded-lg">
             </div>
             <input @click.prevent="register" type="submit" value="register"
-                   class="block float-right mx-auto w-32 p-1 bg-sky-400 text-white rounded-lg">
+                   class="block float-right mx-auto w-32 p-1 bg-red-600 text-white rounded-lg">
         </div>
     </div>
 </template>
