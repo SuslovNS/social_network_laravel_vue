@@ -55,6 +55,16 @@ class PostController extends Controller
         return new PostResource($post);
     }
 
+    public function deletePost(Post $post)
+    {
+        if($post->image){
+            $post->image->delete();
+        }
+        $post->delete();
+        return response([]);
+
+    }
+
     public function repost(RepostRequest $request, Post $post)
     {
         $data = $request->validated();

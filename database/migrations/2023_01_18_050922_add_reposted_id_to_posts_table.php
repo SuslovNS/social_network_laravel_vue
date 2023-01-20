@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->foreignId('reposted_id')->index()->nullable()->constrained('posts');
+            $table->foreignId('reposted_id')->unsigned()->index()->nullable()->constrained('posts');
         });
     }
 

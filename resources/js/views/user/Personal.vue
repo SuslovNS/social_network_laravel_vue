@@ -1,7 +1,15 @@
 <template>
     <div class="w-96 mx-auto">
         <Stat :stats ="stats"></Stat>
-        <div class="mb-4">
+        <div class="flex justify-center" v-if="!adding">
+            <svg  @click="adding = true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                  :class="['mr-2 stroke-black-500 cursor-pointer hover:fill-red-500 w-6 h-6', 'fill-white' ]">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p>Add post</p>
+        </div>
+        <div v-if="adding" @click="adding = false" class="cursor-pointer text-center">Close</div>
+        <div v-if="adding" class="mb-4">
             <div class="mb-3">
                 <input v-model="title" class="w-96  rounded-3xl border p-2 border-slate-400 " type="text"
                        placeholder="title">
@@ -30,14 +38,13 @@
                 <img :src="image.url" alt="preview">
             </div>
             <div>
-                <a @click.prevent="store" href="#" class="block p-2 w-32 text-center rounded-3xl bg-green-600 text-white
-            hover:bg-white hover:border hover:border-green-600 hover:text-green-600 ml-auto">Publish</a>
+                <a @click.prevent="store" href="#" class="block p-2 w-32 text-center rounded-3xl bg-red-600 text-white
+            hover:bg-white hover:border hover:border-red-600 hover:text-red-600 ml-auto">Publish</a>
             </div>
-
-            <div v-if="posts">
-                <h1 class="mb-8 pb-8 border-b border-gray-400">Posts</h1>
-                <Post v-for="post in posts" :post="post"></Post>
-            </div>
+        </div>
+        <div v-if="posts">
+            <h1 class="mb-8 pb-4 border-b border-gray-400">Posts</h1>
+            <Post v-for="post in posts" :post="post"></Post>
         </div>
     </div>
 </template>
@@ -56,7 +63,8 @@ export default {
             image: null,
             posts: [],
             errors: [],
-            stats: []
+            stats: [],
+            adding: false
         }
     },
 
