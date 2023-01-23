@@ -57,8 +57,23 @@ class PostController extends Controller
 
     public function deletePost(Post $post)
     {
-        if($post->image){
-            $post->image->delete();
+        $comments = Comment::where('post_id', $post->id)->get();
+        $likesOfPost = LikedPosts::where('post_id', $post->id)->get();
+        $postImages = PostImage::where('post_id', $post->id)->get();
+        if ($comments) {
+            foreach ($comments as $comment) {
+                $comment->delete();
+            }
+        }
+        if ($likesOfPost) {
+            foreach ($likesOfPost as $likes) {
+                $likes->delete();
+            }
+        }
+        if($postImages){
+            foreach ($postImages as $postImage) {
+                $postImage->delete();
+            }
         }
         $post->delete();
         return response([]);

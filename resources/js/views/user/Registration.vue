@@ -18,6 +18,9 @@
                 <input v-model="password_confirmation" type="password" placeholder="password_confirmation"
                        class="w-96 p-1 mb-2 border border-inherit rounded-lg">
             </div>
+            <div v-if="errors">
+                <p v-for="error in errors" class="text-sm mt-2 text-red-500">{{error}}</p>
+            </div>
             <input @click.prevent="register" type="submit" value="register"
                    class="block float-right mx-auto w-32 p-1 bg-red-600 text-white rounded-lg">
         </div>
@@ -34,6 +37,7 @@ export default {
             email: null,
             password: null,
             password_confirmation: null,
+            errors: []
         }
     },
 
@@ -50,6 +54,9 @@ export default {
                     .then( res => {
                         localStorage.setItem('x_xsrf_token', res.config.headers['X-XSRF-TOKEN'])
                         this.$router.push({name: 'user.personal'})
+                    })
+                    .catch( e => {
+                        this.errors = e.response.data.errors
                     })
                 })
         }

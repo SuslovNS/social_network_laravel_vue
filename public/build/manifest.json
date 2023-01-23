@@ -1,6 +1,6 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app.7887afca.js",
+    "file": "assets/app.4e399b50.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
@@ -13,7 +13,7 @@
     ]
   },
   "resources/js/views/user/Index.vue": {
-    "file": "assets/Index.34a82487.js",
+    "file": "assets/Index.05ecadf2.js",
     "src": "resources/js/views/user/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -21,38 +21,38 @@
     ]
   },
   "resources/js/views/user/Show.vue": {
-    "file": "assets/Show.15520c42.js",
+    "file": "assets/Show.88577d72.js",
     "src": "resources/js/views/user/Show.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_Post.cff02440.js",
-      "_Stat.3ab9a7a7.js",
+      "_Post.1a17a9a0.js",
+      "_Stat.398daffc.js",
       "resources/js/app.js"
     ]
   },
-  "_Post.cff02440.js": {
-    "file": "assets/Post.cff02440.js",
+  "_Post.1a17a9a0.js": {
+    "file": "assets/Post.1a17a9a0.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_Stat.3ab9a7a7.js": {
-    "file": "assets/Stat.3ab9a7a7.js",
+  "_Stat.398daffc.js": {
+    "file": "assets/Stat.398daffc.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/views/user/Feed.vue": {
-    "file": "assets/Feed.c62684ad.js",
+    "file": "assets/Feed.13e849c8.js",
     "src": "resources/js/views/user/Feed.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_Post.cff02440.js",
+      "_Post.1a17a9a0.js",
       "resources/js/app.js"
     ]
   },
   "resources/js/views/user/Login.vue": {
-    "file": "assets/Login.5fe38e8c.js",
+    "file": "assets/Login.90030b11.js",
     "src": "resources/js/views/user/Login.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -60,7 +60,7 @@
     ]
   },
   "resources/js/views/user/Registration.vue": {
-    "file": "assets/Registration.32cf725b.js",
+    "file": "assets/Registration.a7d58f2e.js",
     "src": "resources/js/views/user/Registration.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -68,17 +68,17 @@
     ]
   },
   "resources/js/views/user/Personal.vue": {
-    "file": "assets/Personal.cbb49214.js",
+    "file": "assets/Personal.6da059bf.js",
     "src": "resources/js/views/user/Personal.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_Post.cff02440.js",
-      "_Stat.3ab9a7a7.js",
+      "_Post.1a17a9a0.js",
+      "_Stat.398daffc.js",
       "resources/js/app.js"
     ]
   },
   "resources/css/app.css": {
-    "file": "assets/app.61a1db23.css",
+    "file": "assets/app.f31f5602.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }

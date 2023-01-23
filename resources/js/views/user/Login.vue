@@ -6,6 +6,9 @@
         <div>
             <input v-model="password" type="password" placeholder="password" class="w-96 p-1 mb-2 border border-inherit rounded-lg">
         </div>
+        <div v-if="errors">
+            <p v-for="error in errors" class="text-sm mt-2 text-red-500">{{error}}</p>
+        </div>
         <div>
             <input @click.prevent="login" type="submit" value="login" class="block float-right mx-auto w-32 p-1 bg-red-600 text-white rounded-lg">
         </div>
@@ -20,6 +23,7 @@ export default {
         return {
             email: null,
             password: null,
+            errors: []
         }
     },
 
@@ -32,7 +36,8 @@ export default {
                             localStorage.setItem('x_xsrf_token', r.config.headers['X-XSRF-TOKEN'])
                             this.$router.push({name: 'user.personal'})
                         })
-                        .catch(err => {
+                        .catch(e => {
+                            this.errors = e.response.data.errors
                         })
                 })
         }

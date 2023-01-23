@@ -61,6 +61,9 @@
                 </div>
             </div>
         </div>
+        <div v-if="err">
+            <p class="text-sm mt-2 text-red-500">{{err}}</p>
+        </div>
 
         <div v-if="isRepost" class="mt-4">
             <div>
@@ -79,8 +82,12 @@
                 <p v-for="error in errors.content" class="text-sm mt-2 text-red-500">{{error}}</p>
             </div>
             <div>
+
                 <a @click.prevent="repost(post)" href="#" class="block p-2 w-32 text-center rounded-3xl bg-green-600 text-white
             hover:bg-white hover:border hover:border-green-600 hover:text-green-600 ml-auto">Repost</a>
+            </div>
+            <div v-if="succsesRepost">
+                <p class="text-sm mt-2 text-green-500">{{succsesRepost}}</p>
             </div>
         </div>
         <div v-if="post.comments_count > 0" class="mt-4">
@@ -136,7 +143,9 @@
                 comments: [],
                 isShowed: false,
                 comment: null,
-                isDelete: false
+                isDelete: false,
+                err: '',
+                succsesRepost: '',
             }
         },
 
@@ -146,6 +155,9 @@
                     .then(res => {
                         post.is_liked = res.data.is_liked
                         post.likes_count = res.data.likes_count
+                    })
+                    .catch(e => {
+                        this.err = 'Произошла ошибка. Обратитесь к администратору.'
                     })
             },
 
@@ -163,6 +175,9 @@
                         post.comments_count++
                         this.isShowed = true
                     })
+                    .catch(e => {
+                        this.err = 'Произошла ошибка. Обратитесь к администратору.'
+                    })
             },
 
             getComments(post) {
@@ -170,6 +185,9 @@
                     .then(res => {
                         this.comments = res.data.data
                         this.isShowed = true
+                    })
+                    .catch(e => {
+                        this.err = 'Произошла ошибка. Обратитесь к администратору.'
                     })
             },
 
@@ -185,6 +203,7 @@
                         this.title = ''
                         this.content = ''
                         post.reposted_by_posts_count++
+                        this.succsesRepost = 'Репост успешно сделан'
                     })
                     .catch(e => {
                         this.errors = e.response.data.errors
@@ -195,6 +214,8 @@
                 axios.delete(`/api/posts/${post.id}/delete`)
                 .then(res => {
                     this.isDelete = true
+                }).catch(e => {
+                    this.err = 'Произошла ошибка. Обратитесь к администратору.'
                 })
 
             }
