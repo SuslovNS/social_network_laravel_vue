@@ -23,12 +23,12 @@ class StoreMessageEvent implements ShouldBroadcast
         $this->message = $message;
     }
 
-    public function broadcastOn():array
+    public function broadcastOn()
     {
         return [new Channel('store_message')];
     }
 
-    public function broadcastAs(): string
+    public function broadcastAs()
     {
         return 'store_message';
     }
@@ -38,7 +38,7 @@ class StoreMessageEvent implements ShouldBroadcast
      *
      * @return array<string, mixed>
      */
-    public function broadcastWith(): array
+    public function broadcastWith()
     {
         return [
             'message' => MessageResource::make($this->message)->resolve()
