@@ -4,6 +4,7 @@
 
         <router-link v-if="!token" :to="{ name: 'user.login'}">Login</router-link>
         <router-link v-if="token" :to="{ name: 'user.index'}">Users</router-link>
+        <router-link v-if="token" :to="{ name: 'chat.index'}">Chat</router-link>
         <router-link v-if="token" :to="{ name: 'user.feed'}">Feed</router-link>
         <router-link v-if="token" :to="{ name: 'user.personal'}">Personal</router-link>
         <router-link v-if="!token" :to="{ name: 'user.registration'}">Registration</router-link>

@@ -48,11 +48,12 @@ class UserController extends Controller
         return response()->json(['data' => $result]);
     }
 
-    public function oneUserName($id)
+    public function getUser($id)
     {
-       $user = User::where('id', $id)->first();
-       return $user->name;
+        $user = User::where('id', $id)->first();
+        return UserResource::make($user);
     }
+
 
     public function toggleFollowing(User $user)
     {

@@ -25,7 +25,7 @@ Route::group(['middleware'=>'auth:sanctum'], function (){
     Route::post('/users/{user}/toggle_following', [\App\Http\Controllers\UserController::class, 'toggleFollowing']);
     Route::get('/users/following_posts', [\App\Http\Controllers\UserController::class, 'followingPost']);
     Route::post('/users/stats', [\App\Http\Controllers\UserController::class, 'stat']);
-    Route::get('/users/{user}', [\App\Http\Controllers\UserController::class, 'oneUserName']);
+    Route::get('/users/get/{user}', [\App\Http\Controllers\UserController::class, 'getUser']);
 
 
     Route::get('/posts', [\App\Http\Controllers\PostController::class, 'index']);
@@ -36,4 +36,8 @@ Route::group(['middleware'=>'auth:sanctum'], function (){
     Route::post('/posts/{post}/comment', [\App\Http\Controllers\PostController::class, 'comment']);
     Route::get('/posts/{post}/comment', [\App\Http\Controllers\PostController::class, 'commentList']);
     Route::delete('/posts/{post}/delete', [\App\Http\Controllers\PostController::class, 'deletePost']);
+
+
+    Route::post('/chat/{userId}/send', [\App\Http\Controllers\ChatController::class,'sendMessage']);
+    Route::get('/chat/{userId}', [\App\Http\Controllers\ChatController::class,'index']);
 });
