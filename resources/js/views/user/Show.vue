@@ -2,7 +2,7 @@
     <div class="w-96 mx-auto">
             <Stat :stats="stats"></Stat>
         <div v-if="posts">
-            <h1 class="text-center mb-4 pb-4 border-b border-gray-400">{{userName}}`s posts</h1>
+            <h1 class="text-center mb-4 pb-4 border-b border-gray-400">{{user.name}}`s posts</h1>
             <Post v-for="post in posts" :post="post"></Post>
         </div>
         <div v-else>
@@ -23,7 +23,7 @@ export default {
         return {
             posts: [],
             userId: this.$route.params.id,
-            userName: '',
+            user: {},
             stats: []
         }
     },
@@ -54,9 +54,9 @@ export default {
         },
 
         getUser(){
-            axios.get(`/api/users/${this.userId}`)
+            axios.get(`/api/users/get/${this.userId}`)
             .then(res => {
-                this.userName = res.data
+                this.user = res.data.data
             })
         }
 
