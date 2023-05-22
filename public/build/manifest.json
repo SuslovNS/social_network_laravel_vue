@@ -1,19 +1,30 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app.4e399b50.js",
+    "file": "assets/app.6adb9a39.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
+      "resources/js/views/Index.vue",
       "resources/js/views/user/Index.vue",
       "resources/js/views/user/Show.vue",
       "resources/js/views/user/Feed.vue",
       "resources/js/views/user/Login.vue",
       "resources/js/views/user/Registration.vue",
-      "resources/js/views/user/Personal.vue"
+      "resources/js/views/user/Personal.vue",
+      "resources/js/views/chat/Index.vue",
+      "resources/js/views/chat/User.vue"
+    ]
+  },
+  "resources/js/views/Index.vue": {
+    "file": "assets/Index.238c7d21.js",
+    "src": "resources/js/views/Index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
     ]
   },
   "resources/js/views/user/Index.vue": {
-    "file": "assets/Index.05ecadf2.js",
+    "file": "assets/Index.9b1321d0.js",
     "src": "resources/js/views/user/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -21,38 +32,38 @@
     ]
   },
   "resources/js/views/user/Show.vue": {
-    "file": "assets/Show.88577d72.js",
+    "file": "assets/Show.6f2ecbcd.js",
     "src": "resources/js/views/user/Show.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_Post.1a17a9a0.js",
-      "_Stat.398daffc.js",
+      "_Post.dcbca8db.js",
+      "_Stat.d11b00a5.js",
       "resources/js/app.js"
     ]
   },
-  "_Post.1a17a9a0.js": {
-    "file": "assets/Post.1a17a9a0.js",
+  "_Post.dcbca8db.js": {
+    "file": "assets/Post.dcbca8db.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_Stat.398daffc.js": {
-    "file": "assets/Stat.398daffc.js",
+  "_Stat.d11b00a5.js": {
+    "file": "assets/Stat.d11b00a5.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/views/user/Feed.vue": {
-    "file": "assets/Feed.13e849c8.js",
+    "file": "assets/Feed.5aab4399.js",
     "src": "resources/js/views/user/Feed.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_Post.1a17a9a0.js",
+      "_Post.dcbca8db.js",
       "resources/js/app.js"
     ]
   },
   "resources/js/views/user/Login.vue": {
-    "file": "assets/Login.90030b11.js",
+    "file": "assets/Login.27124c85.js",
     "src": "resources/js/views/user/Login.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -60,7 +71,7 @@
     ]
   },
   "resources/js/views/user/Registration.vue": {
-    "file": "assets/Registration.a7d58f2e.js",
+    "file": "assets/Registration.4f13cb4c.js",
     "src": "resources/js/views/user/Registration.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -68,17 +79,40 @@
     ]
   },
   "resources/js/views/user/Personal.vue": {
-    "file": "assets/Personal.6da059bf.js",
+    "file": "assets/Personal.da4d74fb.js",
     "src": "resources/js/views/user/Personal.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_Post.1a17a9a0.js",
-      "_Stat.398daffc.js",
+      "_Post.dcbca8db.js",
+      "_Stat.d11b00a5.js",
       "resources/js/app.js"
     ]
   },
+  "resources/js/views/chat/Index.vue": {
+    "file": "assets/Index.9ffae3d1.js",
+    "src": "resources/js/views/chat/Index.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/views/chat/User.vue": {
+    "file": "assets/User.ff22a484.js",
+    "src": "resources/js/views/chat/User.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "assets/User.2a12508b.css"
+    ]
+  },
+  "resources/js/views/chat/User.css": {
+    "file": "assets/User.2a12508b.css",
+    "src": "resources/js/views/chat/User.css"
+  },
   "resources/css/app.css": {
-    "file": "assets/app.f31f5602.css",
+    "file": "assets/app.ff1d44ef.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }
