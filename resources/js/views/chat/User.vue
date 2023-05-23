@@ -26,12 +26,12 @@
                 No messages
             </div>
         </div>
-                <div class="chat-footer">
-                    <form @submit.prevent="sendMessage">
-                        <input type="text" v-model="messageInput" placeholder="Введите сообщение">
-                        <button type="submit">Отправить</button>
-                    </form>
-                </div>
+        <div class="chat-footer">
+            <form @submit.prevent="sendMessage">
+                <input type="text" v-model="messageInput" placeholder="Введите сообщение">
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -39,23 +39,21 @@
     export default {
         name: "User.vue",
 
-        created() {
-            window.Echo.channel('store_message')
-            .listen('.store_message', res => {
-                this.messages.push(res.message)
-            })
-        },
-
         data() {
             return {
                 user: {},
                 userGet: {},
                 messages: [],
                 messageInput: '',
-                userId: this.$route.params.userId
+                userId: this.$route.params.userId,
+                userSentId: '',
+                channelId: ''
             }
         },
+
+
         methods: {
+
             sendMessage() {
                 axios.post(`/api/chat/${this.userId}/send`, {
                     message: this.messageInput,
@@ -82,18 +80,34 @@
                     });
             },
 
+            getChannelId(user1Id, user2Id) {
+                return user1Id < user2Id ? `${user1Id}-${user2Id}` : `${user2Id}-${user1Id}`;
+            },
+
+            async openChannel() {
+                const res = await axios.get('/api/user')
+                let num = res.data.id
+                this.userSentId = num.toString()
+                this.channelId = this.getChannelId(this.userId, this.userSentId);
+            },
+
+            open() {
+                if (!this.channelId) {
+                    return setTimeout(this.open, 100);
+                }
+                window.Echo.channel(`chat.${this.channelId}`)
+                    .listen('.store_message', res => {
+                        this.messages.push(res.message)
+                    })
+            },
+
+
         },
         mounted() {
             this.getUserGet()
             this.getMessages()
-            // this.getUserSent()
-            // Echo.private(`chat.${this.userId}`)
-            //     .listen('MessageSent', (e) => {
-            //         this.messages.push({
-            //             message: e.message,
-            //             user: e.user
-            //         });
-            //     });
+            this.openChannel()
+            this.open()
         },
     }
 

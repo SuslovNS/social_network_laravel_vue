@@ -35,8 +35,8 @@ class ChatController extends Controller
             'sent_user_id' => $sendUserId,
             'get_user_id' => $userId,
         ]);
-
-        broadcast(new StoreMessageEvent($message))->toOthers();
+        $channelId = $userId < $sendUserId ? "{$userId}-{$sendUserId}" : "{$sendUserId}-{$userId}";
+        broadcast(new StoreMessageEvent($message, $channelId))->toOthers();
 
         return new MessageResource($message);
     }

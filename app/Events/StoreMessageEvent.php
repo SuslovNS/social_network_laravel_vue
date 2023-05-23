@@ -4,6 +4,7 @@ namespace App\Events;
 
 use App\Http\Resources\Message\MessageResource;
 use App\Models\Message;
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -17,15 +18,17 @@ class StoreMessageEvent implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     private $message;
+    private $channelId;
 
-    public function __construct(Message $message)
+    public function __construct(Message $message, $channelId)
     {
         $this->message = $message;
+        $this->channelId = $channelId;
     }
 
     public function broadcastOn()
     {
-        return [new Channel('store_message')];
+        return new Channel('chat.' . $this->channelId);
     }
 
     public function broadcastAs()
