@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Message;
+namespace App\Http\Requests\ImageMessage;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,10 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'body' => 'required|string',
-            'sent_user_id' => 'integer|exists:users,id',
-            'get_user_id' => 'integer|exists:users,id',
-            'image_id' => 'nullable|integer|exists:image_messages,id',
+            'image' => 'required|file'
         ];
     }
 }

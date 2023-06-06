@@ -9,5 +9,12 @@ class Message extends Model
 {
     use HasFactory;
     protected $guarded = false;
+    protected $with = ['image'];
+
+    public function image()
+    {
+        return $this->hasOne(ImageMessage::class, 'message_id', 'id')
+            ->whereNotNull('message_id');
+    }
 
 }

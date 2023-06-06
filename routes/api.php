@@ -40,4 +40,5 @@ Route::group(['middleware'=>'auth:sanctum'], function (){
 
     Route::post('/chat/{userId}/send', [\App\Http\Controllers\ChatController::class,'sendMessage']);
     Route::get('/chat/{userId}', [\App\Http\Controllers\ChatController::class,'index']);
+    Route::post('/images_message', [\App\Http\Controllers\ImageMessageController::class, 'store']);
 });
