@@ -1,6 +1,6 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app.5aab8ba3.js",
+    "file": "assets/app.a3a777a0.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
@@ -12,11 +12,12 @@
       "resources/js/views/user/Registration.vue",
       "resources/js/views/user/Personal.vue",
       "resources/js/views/chat/Index.vue",
-      "resources/js/views/chat/User.vue"
+      "resources/js/views/chat/User.vue",
+      "resources/js/views/search/Search.vue"
     ]
   },
   "resources/js/views/Index.vue": {
-    "file": "assets/Index.83ea1d4a.js",
+    "file": "assets/Index.eca29c06.js",
     "src": "resources/js/views/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -24,7 +25,7 @@
     ]
   },
   "resources/js/views/user/Index.vue": {
-    "file": "assets/Index.b42ee002.js",
+    "file": "assets/Index.360088bc.js",
     "src": "resources/js/views/user/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -32,38 +33,38 @@
     ]
   },
   "resources/js/views/user/Show.vue": {
-    "file": "assets/Show.671b9c42.js",
+    "file": "assets/Show.d6e1dc7d.js",
     "src": "resources/js/views/user/Show.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_Post.d5330318.js",
-      "_Stat.913e9785.js",
+      "_Post.a84aed95.js",
+      "_Stat.f22310c0.js",
       "resources/js/app.js"
     ]
   },
-  "_Post.d5330318.js": {
-    "file": "assets/Post.d5330318.js",
+  "_Post.a84aed95.js": {
+    "file": "assets/Post.a84aed95.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_Stat.913e9785.js": {
-    "file": "assets/Stat.913e9785.js",
+  "_Stat.f22310c0.js": {
+    "file": "assets/Stat.f22310c0.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/views/user/Feed.vue": {
-    "file": "assets/Feed.40618cab.js",
+    "file": "assets/Feed.a2d18940.js",
     "src": "resources/js/views/user/Feed.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_Post.d5330318.js",
+      "_Post.a84aed95.js",
       "resources/js/app.js"
     ]
   },
   "resources/js/views/user/Login.vue": {
-    "file": "assets/Login.c264abba.js",
+    "file": "assets/Login.f74f06c5.js",
     "src": "resources/js/views/user/Login.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -71,7 +72,7 @@
     ]
   },
   "resources/js/views/user/Registration.vue": {
-    "file": "assets/Registration.2f741008.js",
+    "file": "assets/Registration.45612364.js",
     "src": "resources/js/views/user/Registration.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -79,17 +80,17 @@
     ]
   },
   "resources/js/views/user/Personal.vue": {
-    "file": "assets/Personal.c8e858ad.js",
+    "file": "assets/Personal.528bb0da.js",
     "src": "resources/js/views/user/Personal.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_Post.d5330318.js",
-      "_Stat.913e9785.js",
+      "_Post.a84aed95.js",
+      "_Stat.f22310c0.js",
       "resources/js/app.js"
     ]
   },
   "resources/js/views/chat/Index.vue": {
-    "file": "assets/Index.41b90f40.js",
+    "file": "assets/Index.2db6246e.js",
     "src": "resources/js/views/chat/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -97,7 +98,7 @@
     ]
   },
   "resources/js/views/chat/User.vue": {
-    "file": "assets/User.3540c920.js",
+    "file": "assets/User.5084c005.js",
     "src": "resources/js/views/chat/User.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -107,10 +108,25 @@
       "assets/User.731bd261.css"
     ]
   },
+  "resources/js/views/search/Search.vue": {
+    "file": "assets/Search.e6baf112.js",
+    "src": "resources/js/views/search/Search.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "assets/Search.a9425f70.css"
+    ]
+  },
   "resources/css/app.css": {
-    "file": "assets/app.59776bf3.css",
+    "file": "assets/app.7f7419b0.css",
     "src": "resources/css/app.css",
     "isEntry": true
+  },
+  "resources/js/views/search/Search.css": {
+    "file": "assets/Search.a9425f70.css",
+    "src": "resources/js/views/search/Search.css"
   },
   "resources/js/views/chat/User.css": {
     "file": "assets/User.731bd261.css",
