@@ -9,8 +9,8 @@
         <div v-if="loading" class="text-center font-medium py-4">
             Загрузка результатов...
         </div>
-        <div v-if="!english" class="text-center font-medium py-4">
-            Введите запрос на английском языке
+        <div v-if="actors.length === 0" class="text-center font-medium py-4">
+            Ничего не найдено. Попробуйте ввести запрос на английском языке
         </div>
         <ul class="grid grid-cols-2 md:grid-cols-3 gap-4">
             <li v-for="actor in actors" :key="actor.id"
@@ -45,7 +45,6 @@
                 query: '',
                 actors: [],
                 loading: false,
-                english: true,
                 error: null,
                 currentPage: 1,
                 perPage: 50,
@@ -71,9 +70,6 @@
             },
 
             async searchActors() {
-                if (/[\u0400-\u04FF]/.test(this.query)) {
-                    this.english = false
-                } else {
                     const capitalizedWords = this.query.split(' ').map(word => {
                         return word.charAt(0).toUpperCase() + word.slice(1);
                     });
@@ -97,7 +93,6 @@
                             this.totalActors = 0;
                             this.error = "Произошла ошибка при загрузке данных";
                         });
-                }
             },
 
 
