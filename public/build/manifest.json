@@ -1,6 +1,6 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app.a3a777a0.js",
+    "file": "assets/app.da360818.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
@@ -17,7 +17,7 @@
     ]
   },
   "resources/js/views/Index.vue": {
-    "file": "assets/Index.eca29c06.js",
+    "file": "assets/Index.e860d865.js",
     "src": "resources/js/views/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -25,7 +25,7 @@
     ]
   },
   "resources/js/views/user/Index.vue": {
-    "file": "assets/Index.360088bc.js",
+    "file": "assets/Index.f1df4b93.js",
     "src": "resources/js/views/user/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -33,38 +33,38 @@
     ]
   },
   "resources/js/views/user/Show.vue": {
-    "file": "assets/Show.d6e1dc7d.js",
+    "file": "assets/Show.d788e31d.js",
     "src": "resources/js/views/user/Show.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_Post.a84aed95.js",
-      "_Stat.f22310c0.js",
+      "_Post.45e083da.js",
+      "_Stat.a9f9f776.js",
       "resources/js/app.js"
     ]
   },
-  "_Post.a84aed95.js": {
-    "file": "assets/Post.a84aed95.js",
+  "_Post.45e083da.js": {
+    "file": "assets/Post.45e083da.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_Stat.f22310c0.js": {
-    "file": "assets/Stat.f22310c0.js",
+  "_Stat.a9f9f776.js": {
+    "file": "assets/Stat.a9f9f776.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
   "resources/js/views/user/Feed.vue": {
-    "file": "assets/Feed.a2d18940.js",
+    "file": "assets/Feed.ef7846a4.js",
     "src": "resources/js/views/user/Feed.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_Post.a84aed95.js",
+      "_Post.45e083da.js",
       "resources/js/app.js"
     ]
   },
   "resources/js/views/user/Login.vue": {
-    "file": "assets/Login.f74f06c5.js",
+    "file": "assets/Login.da82dd8d.js",
     "src": "resources/js/views/user/Login.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -72,7 +72,7 @@
     ]
   },
   "resources/js/views/user/Registration.vue": {
-    "file": "assets/Registration.45612364.js",
+    "file": "assets/Registration.e7607962.js",
     "src": "resources/js/views/user/Registration.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -80,17 +80,17 @@
     ]
   },
   "resources/js/views/user/Personal.vue": {
-    "file": "assets/Personal.528bb0da.js",
+    "file": "assets/Personal.a77b7281.js",
     "src": "resources/js/views/user/Personal.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_Post.a84aed95.js",
-      "_Stat.f22310c0.js",
+      "_Post.45e083da.js",
+      "_Stat.a9f9f776.js",
       "resources/js/app.js"
     ]
   },
   "resources/js/views/chat/Index.vue": {
-    "file": "assets/Index.2db6246e.js",
+    "file": "assets/Index.e03415dd.js",
     "src": "resources/js/views/chat/Index.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -98,7 +98,7 @@
     ]
   },
   "resources/js/views/chat/User.vue": {
-    "file": "assets/User.5084c005.js",
+    "file": "assets/User.10e295ba.js",
     "src": "resources/js/views/chat/User.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -109,27 +109,27 @@
     ]
   },
   "resources/js/views/search/Search.vue": {
-    "file": "assets/Search.e6baf112.js",
+    "file": "assets/Search.4dd88056.js",
     "src": "resources/js/views/search/Search.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ],
     "css": [
-      "assets/Search.a9425f70.css"
+      "assets/Search.13469618.css"
     ]
   },
-  "resources/css/app.css": {
-    "file": "assets/app.7f7419b0.css",
-    "src": "resources/css/app.css",
-    "isEntry": true
-  },
   "resources/js/views/search/Search.css": {
-    "file": "assets/Search.a9425f70.css",
+    "file": "assets/Search.13469618.css",
     "src": "resources/js/views/search/Search.css"
   },
   "resources/js/views/chat/User.css": {
     "file": "assets/User.731bd261.css",
     "src": "resources/js/views/chat/User.css"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app.ecd09738.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
   }
 }
