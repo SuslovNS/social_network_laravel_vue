@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as o}from"./app.bca73d12.js";const c={name:"index"},n={class:"text-center"};function s(r,a,_,d,i,p){return t(),o("div",n," Welcome to my Social Network ")}const m=e(c,[["render",s]]);export{m as default};

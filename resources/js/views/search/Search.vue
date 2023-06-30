@@ -9,9 +9,7 @@
         <div v-if="loading" class="text-center font-medium py-4">
             Загрузка результатов...
         </div>
-        <div v-if="actors.length === 0" class="text-center font-medium py-4">
-            Ничего не найдено. Попробуйте ввести запрос на английском языке
-        </div>
+        <div v-if="actors.length > 0">
         <ul class="grid grid-cols-2 md:grid-cols-3 gap-4">
             <li v-for="actor in actors" :key="actor.id"
                 class="flex flex-col items-center border rounded-md p-4 shadow-md">
@@ -22,6 +20,10 @@
                 </a>
             </li>
         </ul>
+        </div>
+        <div v-if="totalActors === 0" class="text-center font-medium py-4">
+            Ничего не найдено. Попробуйте ввести запрос на английском языке
+        </div>
         <div v-if="actors.length > 0" class="flex justify-center mt-8">
             <button @click.prevent="fetchPreviousPage" :disabled="currentPage === 1"
                     class="px-4 py-2 rounded-md bg-blue-500 text-white mr-2">Предыдущая страница
@@ -45,6 +47,8 @@
                 query: '',
                 actors: [],
                 loading: false,
+                searched:false,
+                totalActors: '',
                 error: null,
                 currentPage: 1,
                 perPage: 50,
@@ -66,7 +70,11 @@
             },
             searchDefault() {
                 this.currentPage = 1
-                this.searchActors()
+                if (this.query.trim().length > 0) { // Добавляем проверку на пустой запрос
+                    this.searchActors();
+                } else {
+                    this.error = "Введите запрос"
+                }
             },
 
             async searchActors() {
